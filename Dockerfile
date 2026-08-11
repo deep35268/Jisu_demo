@@ -1,10 +1,12 @@
-FROM python:3.10.8-slim-buster
+FROM python:3.10-slim-bookworm
 
 WORKDIR /Jisshu-filter-bot
-RUN chmod 777 /Jisshu-filter-bot
 
-RUN apt update && apt install -y --no-install-recommends git \
-    && rm -rf /var/lib/apt/lists/*
+# Debian bookworm 'ਚ apt-get ਨਾਲ --fix-missing ਵਰਤੋ (ਵਧੇਰੇ ਸਥਿਰ)
+RUN apt-get update -y --fix-missing && \
+    apt-get install -y --no-install-recommends git && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
