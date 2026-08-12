@@ -37,6 +37,9 @@ CHANNELS = [
     for ch in environ.get("CHANNELS", "-1003954712996").split()
 ]
 
+# 🆕 **BIN_CHANNEL (Streaming/Download ਲਈ ਜ਼ਰੂਰੀ)**
+BIN_CHANNEL = int(environ.get("BIN_CHANNEL", "-1002160542554"))
+
 # ForceSub Channel & Log Channels
 AUTH_CHANNEL = int(environ.get("AUTH_CHANNEL", "-1002545890634"))
 AUTH_REQ_CHANNEL = int(environ.get("AUTH_REQ_CHANNEL", "-1002290453638"))
@@ -173,7 +176,9 @@ if "DYNO" in environ:
     ON_HEROKU = True
 else:
     ON_HEROKU = False
-URL = environ.get("FQDN", "https://defeated-fanni-freehub459-c55f47f2.koyeb.app/")
+
+# 🔴 **ਸਭ ਤੋਂ ਜ਼ਰੂਰੀ ਬਦਲਾਅ - URL ਨੂੰ ਆਪਣੇ Render App URL ਨਾਲ ਬਦਲੋ**
+URL = environ.get("URL", "https://your-render-app-name.onrender.com/")  # ⚠️ "your-render-app-name" ਨੂੰ ਆਪਣੇ Render App ਦੇ ਨਾਮ ਨਾਲ ਬਦਲੋ
 
 # Commands
 admin_cmds = [
