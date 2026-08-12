@@ -4,7 +4,7 @@ import hashlib
 import asyncio
 from info import *
 from utils import *
-from pyrogram import Client, filters
+from pyrogram import Client, filters, enums  # ✅ enums import ਕੀਤਾ
 from database.users_chats_db import db
 from database.ia_filterdb import save_file, unpack_new_file_id
 import aiohttp
@@ -196,12 +196,22 @@ async def send_movie_update(bot, file_name, files):
                 line = f"📦 {quality} : " + " | ".join(links)
                 quality_text += line + "\n"
 
+        movie_update_channel = await db.movies_update_channel_id()
+        if not movie_update_channel:
+            movie_update_channel = MOVIE_UPDATE_CHANNEL
+
+        # ✅ **FIX: PEER_ID_INVALID Error** – ਪਹਿਲਾਂ chat ਨੂੰ meet ਕਰੋ
+        try:
+            await bot.get_chat(movie_update_channel)
+        except Exception as e:
+            print(f"Chat {movie_update_channel} not accessible: {e}")
+            return  # ਜੇਕਰ chat accessible ਨਹੀਂ, ਤਾਂ post ਨਾ ਕਰੋ
+
         image_url = poster or "https://te.legra.ph/file/88d845b4f8a024a71465d.jpg"
         full_caption = UPDATE_CAPTION.format(kind, title, year, files[0]['quality'], language, quality_text)
 
-        movie_update_channel = await db.movies_update_channel_id()
         await bot.send_photo(
-            chat_id=movie_update_channel if movie_update_channel else MOVIE_UPDATE_CHANNEL,
+            chat_id=movie_update_channel,
             photo=image_url,
             caption=full_caption,
             parse_mode=enums.ParseMode.HTML
