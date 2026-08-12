@@ -87,16 +87,42 @@
       </div>
   </div>
   </main>
-  <!-- Footer is now generated via JavaScript -->
-  </div>
+
+  <!-- ========================================== -->
+  <!-- 🆕 ਤਰੀਕਾ 1: Custom Footer + JS Removal    -->
+  <!-- ========================================== -->
   
-  <!-- External JS -->
+  <!-- 1. ਆਪਣਾ ਖੁਦ ਦਾ Footer (Skysetx) -->
+  <footer id="custom-footer" class="text-center py-3 text-light" style="background-color: #0d1117 !important; border-top: 1px solid #30363d; margin-top: 20px;">
+    <p class="mb-0">Made with ❤️ by <strong>Skysetx Developer</strong></p>
+  </footer>
+
+  <!-- 2. External JS (play.js - ਜੋ ਪੁਰਾਣਾ footer ਬਣਾਉਂਦਾ ਹੈ) -->
   <script src="https://developer-six-dusky.vercel.app/548/551/play.js"></script>
+  
+  <script>
+    // 3. play.js ਦੁਆਰਾ ਬਣਾਏ ਗਏ ਪੁਰਾਣੇ footer ਨੂੰ ਹਟਾਓ
+    document.addEventListener("DOMContentLoaded", function() {
+      setTimeout(function() {
+        const allFooters = document.querySelectorAll('footer');
+        allFooters.forEach(footer => {
+          // ਜਿਸ footer ਦੀ ID 'custom-footer' ਨਹੀਂ ਹੈ, ਉਸਨੂੰ ਹਟਾਓ
+          if (footer.id !== 'custom-footer') {
+            footer.remove();
+          }
+        });
+      }, 500); // 0.5 ਸਕਿੰਟ ਦੀ ਦੇਰੀ (play.js ਲੋਡ ਹੋਣ ਲਈ)
+    });
+  </script>
+
+  <!-- ਤੁਹਾਡਾ ਪੁਰਾਣਾ console.log script (ਜੇਕਰ ਰੱਖਣਾ ਹੈ) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       console.log("JS Loaded Successfully");
     });
   </script>
+  <!-- ========================================== -->
+
 </body>
 
-</html>
+        </html>
