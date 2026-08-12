@@ -178,7 +178,7 @@ else:
     ON_HEROKU = False
 
 # 🔴 **ਸਭ ਤੋਂ ਜ਼ਰੂਰੀ ਬਦਲਾਅ - URL ਨੂੰ ਆਪਣੇ Render App URL ਨਾਲ ਬਦਲੋ**
-URL = environ.get("URL", "https://your-render-app-name.onrender.com/")  # ⚠️ "your-render-app-name" ਨੂੰ ਆਪਣੇ Render App ਦੇ ਨਾਮ ਨਾਲ ਬਦਲੋ
+URL = environ.get("URL", "https://efficient-greer-silicon-develr09-a7dbfae3.koyeb.app/")  # ⚠️ "your-render-app-name" ਨੂੰ ਆਪਣੇ Render App ਦੇ ਨਾਮ ਨਾਲ ਬਦਲੋ
 
 # Commands
 admin_cmds = [
