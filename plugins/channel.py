@@ -12,9 +12,6 @@ import aiohttp
 from typing import Optional
 from collections import defaultdict
 
-# Poster generator import
-from poster_gen import create_movie_poster
-
 CAPTION_LANGUAGES = [
     "Bhojpuri", "Hindi", "Bengali", "Tamil", "English", "Bangla",
     "Telugu", "Malayalam", "Kannada", "Marathi", "Punjabi", "Bengoli",
